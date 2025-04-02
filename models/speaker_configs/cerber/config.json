@@ -49,9 +49,9 @@
         }
     },
     "training_history": {
-        "last_training": "2025-04-03 05:55:24.314371",
+        "last_training": "2025-04-03 07:08:05.258962",
         "best_accuracy": 0.0,
-        "total_training_time": 6738.199061
+        "total_training_time": 10413.949177
     },
     "feature_config": {
         "sample_rate": 16000,

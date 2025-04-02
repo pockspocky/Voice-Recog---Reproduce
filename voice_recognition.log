@@ -465,3 +465,42 @@
 2025-04-03 06:02:16,235 - __main__ - INFO - 波形图已保存: output/cerber_ctc_advanced/Cerber5_waveform_20250403_060216.png
 2025-04-03 06:02:16,445 - __main__ - INFO - 开始训练模型...
 2025-04-03 06:02:16,454 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 06:06:17,662 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 06:06:17,662 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 06:06:17,762 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 06:06:18,499 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber2_processed_20250403_060618.wav
+2025-04-03 06:06:18,777 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber2_waveform_20250403_060618.png
+2025-04-03 06:06:19,073 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 06:06:19,110 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber3_processed_20250403_060619.wav
+2025-04-03 06:06:19,250 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber3_waveform_20250403_060619.png
+2025-04-03 06:06:19,417 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 06:06:19,466 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber6_processed_20250403_060619.wav
+2025-04-03 06:06:19,676 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber6_waveform_20250403_060619.png
+2025-04-03 06:06:19,892 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 06:06:19,945 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber4_processed_20250403_060619.wav
+2025-04-03 06:06:20,119 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber4_waveform_20250403_060619.png
+2025-04-03 06:06:20,366 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 06:06:20,416 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber5_processed_20250403_060620.wav
+2025-04-03 06:06:20,584 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber5_waveform_20250403_060620.png
+2025-04-03 06:06:20,799 - __main__ - INFO - 开始训练模型...
+2025-04-03 06:06:20,809 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 06:06:46,738 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 06:06:46,739 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 06:06:46,802 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 06:06:47,295 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber2_processed_20250403_060647.wav
+2025-04-03 06:06:47,550 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber2_waveform_20250403_060647.png
+2025-04-03 06:06:47,803 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 06:06:47,840 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber3_processed_20250403_060647.wav
+2025-04-03 06:06:47,978 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber3_waveform_20250403_060647.png
+2025-04-03 06:06:48,144 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 06:06:48,191 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber6_processed_20250403_060648.wav
+2025-04-03 06:06:48,403 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber6_waveform_20250403_060648.png
+2025-04-03 06:06:48,613 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 06:06:48,664 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber4_processed_20250403_060648.wav
+2025-04-03 06:06:48,834 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber4_waveform_20250403_060648.png
+2025-04-03 06:06:49,081 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 06:06:49,130 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_optimized/Cerber5_processed_20250403_060649.wav
+2025-04-03 06:06:49,294 - __main__ - INFO - 波形图已保存: output/cerber_ctc_optimized/Cerber5_waveform_20250403_060649.png
+2025-04-03 06:06:49,503 - __main__ - INFO - 开始训练模型...
+2025-04-03 06:06:49,512 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 07:08:05,259 - __main__ - INFO - 模型训练完成

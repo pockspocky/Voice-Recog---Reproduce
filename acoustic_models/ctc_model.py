@@ -107,11 +107,32 @@ def collate_fn(batch):
     return features_padded, targets_padded, feature_lens, target_lens
 
 
+def normalize_features(features, epsilon=1e-8):
+    """
+    对特征进行归一化
+    
+    参数:
+        features: 特征张量，形状为(batch_size, time_steps, freq_dim)
+        epsilon: 避免除零的小值
+        
+    返回:
+        归一化后的特征
+    """
+    # 在每个样本上计算均值和标准差
+    mean = features.mean(dim=(1, 2), keepdim=True)
+    std = features.std(dim=(1, 2), keepdim=True) + epsilon
+    
+    # 归一化
+    features_norm = (features - mean) / std
+    
+    return features_norm
+
+
 class CTCRNN(nn.Module):
     """基于RNN的CTC声学模型"""
     
     def __init__(self, input_dim, hidden_dim, output_dim, num_layers=2, 
-                 bidirectional=True, dropout=0.2, rnn_type="lstm"):
+                 bidirectional=True, dropout=0.2, rnn_type="lstm", normalize=True):
         """
         初始化CTC-RNN模型
         
@@ -123,6 +144,7 @@ class CTCRNN(nn.Module):
             bidirectional: 是否使用双向RNN
             dropout: Dropout概率
             rnn_type: RNN类型，"lstm"或"gru"
+            normalize: 是否对输入特征进行归一化
         """
         super(CTCRNN, self).__init__()
         
@@ -133,6 +155,7 @@ class CTCRNN(nn.Module):
         self.bidirectional = bidirectional
         self.dropout = dropout
         self.rnn_type = rnn_type
+        self.normalize = normalize
         
         # 方向数（单向或双向）
         self.num_directions = 2 if bidirectional else 1
@@ -198,25 +221,80 @@ class CTCRNN(nn.Module):
                 x = x[:, :, :self.input_dim]
             else:
                 # 如果特征维度太小，填充
-                padding = torch.zeros(batch_size, seq_len, self.input_dim - feature_dim, device=x.device)
-                x = torch.cat([x, padding], dim=2)
+                pad = torch.zeros(batch_size, seq_len, self.input_dim - feature_dim, device=x.device)
+                x = torch.cat([x, pad], dim=2)
         
-        # 打包序列以忽略填充
-        packed_x = nn.utils.rnn.pack_padded_sequence(x, x_lens, batch_first=True)
+        # 应用归一化
+        if self.normalize:
+            x = normalize_features(x)
+            
+        # 使用pack_padded_sequence处理变长序列
+        x_packed = nn.utils.rnn.pack_padded_sequence(x, x_lens, batch_first=True, enforce_sorted=False)
         
-        # RNN前向传播
-        packed_output, _ = self.rnn(packed_x)
+        # 通过RNN
+        rnn_output, _ = self.rnn(x_packed)
         
         # 解包序列
-        output, output_lens = nn.utils.rnn.pad_packed_sequence(packed_output, batch_first=True)
+        rnn_output, _ = nn.utils.rnn.pad_packed_sequence(rnn_output, batch_first=True)
         
-        # 全连接层
-        logits = self.fc(output)
+        # 应用dropout
+        rnn_output = nn.functional.dropout(rnn_output, p=self.dropout, training=self.training)
         
-        # 对数softmax
+        # 通过全连接层
+        logits = self.fc(rnn_output)
+        
+        # 应用log_softmax
         log_probs = nn.functional.log_softmax(logits, dim=2)
         
+        # 计算输出长度（与输入长度相同）
+        output_lens = x_lens
+        
         return log_probs, output_lens
+
+
+def spec_augment(features, time_mask_param=50, freq_mask_param=10, num_time_masks=1, num_freq_masks=1):
+    """
+    SpecAugment数据增强
+    
+    参数:
+        features: 特征张量，形状为(batch_size, time_steps, freq_dim)
+        time_mask_param: 时间掩码最大宽度
+        freq_mask_param: 频率掩码最大宽度
+        num_time_masks: 应用的时间掩码数量
+        num_freq_masks: 应用的频率掩码数量
+        
+    返回:
+        增强后的特征
+    """
+    B, T, F = features.shape
+    
+    features_aug = features.clone()
+    
+    # 时间掩码
+    for _ in range(num_time_masks):
+        for b in range(B):
+            # 确保最小掩码宽度为1
+            max_time_mask = min(time_mask_param, T // 2)
+            if max_time_mask < 1:
+                max_time_mask = 1
+                
+            t = np.random.randint(1, max_time_mask + 1)  # 掩码宽度至少为1
+            t0 = np.random.randint(0, T - t + 1)  # 确保不会超出边界
+            features_aug[b, t0:t0+t, :] = 0
+    
+    # 频率掩码
+    for _ in range(num_freq_masks):
+        for b in range(B):
+            # 确保最小掩码宽度为1
+            max_freq_mask = min(freq_mask_param, F // 2)
+            if max_freq_mask < 1:
+                max_freq_mask = 1
+                
+            f = np.random.randint(1, max_freq_mask + 1)  # 掩码宽度至少为1
+            f0 = np.random.randint(0, F - f + 1)  # 确保不会超出边界
+            features_aug[b, :, f0:f0+f] = 0
+            
+    return features_aug
 
 
 class CTCTrainer:
@@ -239,7 +317,7 @@ class CTCTrainer:
         self.history = {'train_loss': [], 'val_loss': []}
     
     def train(self, train_loader, val_loader=None, epochs=30, learning_rate=0.0001, weight_decay=1e-5, 
-              patience=5, clip_grad=3.0, save_dir="models/ctc"):
+              patience=5, clip_grad=3.0, save_dir="models/ctc", use_augment=True, grad_noise=0.01):
         """
         训练模型
         
@@ -252,6 +330,8 @@ class CTCTrainer:
             patience: 早停耐心值
             clip_grad: 梯度裁剪值
             save_dir: 模型保存目录
+            use_augment: 是否使用数据增强
+            grad_noise: 梯度噪声大小，0表示不添加噪声
         """
         self.optimizer = optim.RMSprop(
             self.model.parameters(), 
@@ -278,6 +358,16 @@ class CTCTrainer:
             for features, targets, feature_lens, target_lens in pbar:
                 features, targets = features.to(self.device), targets.to(self.device)
                 
+                # 应用数据增强
+                if use_augment and np.random.random() < 0.8:  # 80%概率使用增强
+                    features = spec_augment(
+                        features, 
+                        time_mask_param=50,
+                        freq_mask_param=10,
+                        num_time_masks=2,
+                        num_freq_masks=2
+                    )
+                
                 # 前向传播
                 self.optimizer.zero_grad()
                 log_probs, output_lens = self.model(features, feature_lens)
@@ -292,6 +382,12 @@ class CTCTrainer:
                 
                 # 反向传播
                 loss.backward()
+                
+                # 添加梯度噪声
+                if grad_noise > 0:
+                    for param in self.model.parameters():
+                        if param.grad is not None:
+                            param.grad.add_(torch.randn_like(param.grad) * grad_noise)
                 
                 # 梯度裁剪
                 torch.nn.utils.clip_grad_norm_(self.model.parameters(), clip_grad)
@@ -515,7 +611,7 @@ class CTCModel:
     """CTC声学模型封装类，用于与系统其他部分交互"""
     
     def __init__(self, input_dim=40, hidden_dim=512, output_dim=42, 
-                 num_layers=2, bidirectional=True, speaker_id=None):
+                 num_layers=2, bidirectional=True, speaker_id=None, normalize=True):
         """
         初始化CTC模型
         
@@ -526,6 +622,7 @@ class CTCModel:
             num_layers: RNN层数
             bidirectional: 是否使用双向RNN
             speaker_id: 说话人ID
+            normalize: 是否进行特征归一化
         """
         self.input_dim = input_dim
         self.hidden_dim = hidden_dim
@@ -533,6 +630,7 @@ class CTCModel:
         self.num_layers = num_layers
         self.bidirectional = bidirectional
         self.speaker_id = speaker_id
+        self.normalize = normalize
         
         # 创建模型
         self.model = CTCRNN(
@@ -540,7 +638,8 @@ class CTCModel:
             hidden_dim=hidden_dim,
             output_dim=output_dim,
             num_layers=num_layers,
-            bidirectional=bidirectional
+            bidirectional=bidirectional,
+            normalize=normalize
         )
         
         # 创建训练器
