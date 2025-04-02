@@ -320,4 +320,74 @@ class DNNTrainer:
         
         plt.tight_layout()
         plt.savefig('training_history.png')
-        plt.close() 
+        plt.close()
+
+    def train_without_validation(self, train_loader, epochs=30, learning_rate=0.001, 
+                     weight_decay=1e-5, save_dir="models"):
+        """
+        没有验证集的训练模式
+        
+        参数:
+            train_loader: 训练数据加载器
+            epochs: 训练轮数
+            learning_rate: 学习率
+            weight_decay: 权重衰减
+            save_dir: 模型保存目录
+        """
+        self.optimizer = optim.Adam(self.model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+        
+        # 创建保存目录
+        os.makedirs(save_dir, exist_ok=True)
+        
+        self.history = {'train_loss': [], 'train_accuracy': []}
+        
+        for epoch in range(epochs):
+            # 训练阶段
+            self.model.train()
+            train_loss = 0
+            train_correct = 0
+            train_total = 0
+            
+            pbar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs} [Train]")
+            for features, labels in pbar:
+                features, labels = features.to(self.device), labels.to(self.device)
+                
+                # 前向传播
+                self.optimizer.zero_grad()
+                outputs = self.model(features)
+                loss = self.criterion(outputs, labels)
+                
+                # 反向传播
+                loss.backward()
+                self.optimizer.step()
+                
+                train_loss += loss.item() * features.size(0)
+                
+                # 计算准确率
+                _, predicted = torch.max(outputs, 1)
+                train_total += labels.size(0)
+                train_correct += (predicted == labels).sum().item()
+                
+                # 更新进度条
+                pbar.set_postfix({"loss": loss.item(), "acc": train_correct/train_total})
+            
+            train_loss = train_loss / train_total if train_total > 0 else 0
+            train_acc = train_correct / train_total if train_total > 0 else 0
+            
+            self.history['train_loss'].append(train_loss)
+            self.history['train_accuracy'].append(train_acc)
+            
+            print(f"Epoch {epoch+1}/{epochs} - "
+                  f"Train Loss: {train_loss:.4f}, Train Acc: {train_acc:.4f}")
+                
+            # 每10个epoch保存一次
+            if (epoch + 1) % 10 == 0 or epoch == epochs - 1:
+                self._save_model(os.path.join(save_dir, f"model_epoch{epoch+1}.pth"))
+        
+        # 保存最终模型
+        self._save_model(os.path.join(save_dir, "final_model.pth"))
+        
+        # 绘制训练历史
+        self._plot_history()
+        
+        return self.history 

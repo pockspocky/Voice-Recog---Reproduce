@@ -1,0 +1,467 @@
+2025-04-03 01:08:52,166 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/Data
+2025-04-03 01:08:52,166 - __main__ - INFO - 找到 1 个音频文件
+2025-04-03 01:08:52,166 - config_manager - WARNING - 配置不存在，创建新配置: cerber
+2025-04-03 01:09:18,854 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/Data
+2025-04-03 01:09:18,854 - __main__ - INFO - 找到 1 个音频文件
+2025-04-03 01:10:01,587 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/Data
+2025-04-03 01:10:01,588 - __main__ - INFO - 找到 1 个音频文件
+2025-04-03 01:10:01,588 - config_manager - WARNING - 配置不存在，创建新配置: cerber
+2025-04-03 01:10:01,622 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/Data/Cerber1.mp3
+2025-04-03 01:10:02,727 - __main__ - INFO - 处理后的音频已保存: output/cerber_model/Cerber1_processed_20250403_011002.wav
+2025-04-03 01:10:03,224 - __main__ - INFO - 波形图已保存: output/cerber_model/Cerber1_waveform_20250403_011002.png
+2025-04-03 01:10:19,247 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/Data
+2025-04-03 01:10:19,247 - __main__ - INFO - 找到 1 个音频文件
+2025-04-03 01:10:19,255 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/Data/Cerber1.mp3
+2025-04-03 01:10:19,954 - __main__ - INFO - 处理后的音频已保存: output/cerber_model/Cerber1_processed_20250403_011019.wav
+2025-04-03 01:10:20,343 - __main__ - INFO - 波形图已保存: output/cerber_model/Cerber1_waveform_20250403_011019.png
+2025-04-03 01:10:20,825 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:11:55,322 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/Data
+2025-04-03 01:11:55,322 - __main__ - INFO - 找到 1 个音频文件
+2025-04-03 01:11:55,330 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/Data/Cerber1.mp3
+2025-04-03 01:11:56,035 - __main__ - INFO - 处理后的音频已保存: output/cerber_model/Cerber1_processed_20250403_011156.wav
+2025-04-03 01:11:56,427 - __main__ - INFO - 波形图已保存: output/cerber_model/Cerber1_waveform_20250403_011156.png
+2025-04-03 01:11:56,858 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:11:56,858 - acoustic_models.integrated_model - WARNING - 样本数量太少 (1), 无法进行训练/验证/测试拆分。将只使用单个训练集。
+2025-04-03 01:12:52,030 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/Data
+2025-04-03 01:12:52,030 - __main__ - INFO - 找到 1 个音频文件
+2025-04-03 01:12:52,038 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/Data/Cerber1.mp3
+2025-04-03 01:12:52,742 - __main__ - INFO - 处理后的音频已保存: output/cerber_model/Cerber1_processed_20250403_011252.wav
+2025-04-03 01:12:53,112 - __main__ - INFO - 波形图已保存: output/cerber_model/Cerber1_waveform_20250403_011252.png
+2025-04-03 01:12:53,536 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:12:53,540 - acoustic_models.integrated_model - INFO - 开始训练 dnn 模型...
+2025-04-03 01:13:02,599 - __main__ - INFO - 模型训练完成
+2025-04-03 01:26:38,832 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:26:38,833 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:26:39,074 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:26:40,101 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber2_processed_20250403_012640.wav
+2025-04-03 01:26:40,474 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber2_waveform_20250403_012640.png
+2025-04-03 01:26:40,845 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:26:40,895 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber3_processed_20250403_012640.wav
+2025-04-03 01:26:41,082 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber3_waveform_20250403_012640.png
+2025-04-03 01:26:41,291 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:26:41,355 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber6_processed_20250403_012641.wav
+2025-04-03 01:26:41,627 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber6_waveform_20250403_012641.png
+2025-04-03 01:26:41,895 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:26:41,967 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber4_processed_20250403_012641.wav
+2025-04-03 01:26:42,194 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber4_waveform_20250403_012641.png
+2025-04-03 01:26:42,512 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:26:42,576 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber5_processed_20250403_012642.wav
+2025-04-03 01:26:42,795 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber5_waveform_20250403_012642.png
+2025-04-03 01:26:43,059 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:26:43,070 - acoustic_models.integrated_model - INFO - 开始训练 gmm_hmm 模型...
+2025-04-03 01:26:44,372 - hmmlearn.base - WARNING - Even though the 'startprob_' attribute is set, it will be overwritten during initialization because 'init_params' contains 's'
+2025-04-03 01:26:44,373 - hmmlearn.base - WARNING - Even though the 'transmat_' attribute is set, it will be overwritten during initialization because 'init_params' contains 't'
+2025-04-03 01:27:55,941 - acoustic_models.integrated_model - INFO - 开始训练 dnn 模型...
+2025-04-03 01:28:14,903 - acoustic_models.integrated_model - INFO - 开始训练 cnn 模型...
+2025-04-03 01:28:36,514 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:28:36,515 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:28:36,517 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:28:37,316 - __main__ - INFO - 处理后的音频已保存: output/cerber_gmm_hmm/Cerber2_processed_20250403_012837.wav
+2025-04-03 01:28:37,661 - __main__ - INFO - 波形图已保存: output/cerber_gmm_hmm/Cerber2_waveform_20250403_012837.png
+2025-04-03 01:28:37,993 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:28:38,044 - __main__ - INFO - 处理后的音频已保存: output/cerber_gmm_hmm/Cerber3_processed_20250403_012838.wav
+2025-04-03 01:28:38,227 - __main__ - INFO - 波形图已保存: output/cerber_gmm_hmm/Cerber3_waveform_20250403_012838.png
+2025-04-03 01:28:38,438 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:28:38,502 - __main__ - INFO - 处理后的音频已保存: output/cerber_gmm_hmm/Cerber6_processed_20250403_012838.wav
+2025-04-03 01:28:38,783 - __main__ - INFO - 波形图已保存: output/cerber_gmm_hmm/Cerber6_waveform_20250403_012838.png
+2025-04-03 01:28:39,053 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:28:39,125 - __main__ - INFO - 处理后的音频已保存: output/cerber_gmm_hmm/Cerber4_processed_20250403_012839.wav
+2025-04-03 01:28:39,350 - __main__ - INFO - 波形图已保存: output/cerber_gmm_hmm/Cerber4_waveform_20250403_012839.png
+2025-04-03 01:28:39,655 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:28:39,722 - __main__ - INFO - 处理后的音频已保存: output/cerber_gmm_hmm/Cerber5_processed_20250403_012839.wav
+2025-04-03 01:28:39,945 - __main__ - INFO - 波形图已保存: output/cerber_gmm_hmm/Cerber5_waveform_20250403_012839.png
+2025-04-03 01:28:40,217 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:28:40,227 - acoustic_models.integrated_model - INFO - 开始训练 gmm_hmm 模型...
+2025-04-03 01:28:41,511 - hmmlearn.base - WARNING - Even though the 'startprob_' attribute is set, it will be overwritten during initialization because 'init_params' contains 's'
+2025-04-03 01:28:41,511 - hmmlearn.base - WARNING - Even though the 'transmat_' attribute is set, it will be overwritten during initialization because 'init_params' contains 't'
+2025-04-03 01:29:51,524 - __main__ - INFO - 模型训练完成
+2025-04-03 01:30:49,029 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:30:49,029 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:30:49,038 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:30:49,804 - __main__ - INFO - 处理后的音频已保存: output/cerber_dnn/Cerber2_processed_20250403_013049.wav
+2025-04-03 01:30:50,157 - __main__ - INFO - 波形图已保存: output/cerber_dnn/Cerber2_waveform_20250403_013049.png
+2025-04-03 01:30:50,486 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:30:50,536 - __main__ - INFO - 处理后的音频已保存: output/cerber_dnn/Cerber3_processed_20250403_013050.wav
+2025-04-03 01:30:50,784 - __main__ - INFO - 波形图已保存: output/cerber_dnn/Cerber3_waveform_20250403_013050.png
+2025-04-03 01:30:51,003 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:30:51,067 - __main__ - INFO - 处理后的音频已保存: output/cerber_dnn/Cerber6_processed_20250403_013051.wav
+2025-04-03 01:30:51,283 - __main__ - INFO - 波形图已保存: output/cerber_dnn/Cerber6_waveform_20250403_013051.png
+2025-04-03 01:30:51,551 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:30:51,623 - __main__ - INFO - 处理后的音频已保存: output/cerber_dnn/Cerber4_processed_20250403_013051.wav
+2025-04-03 01:30:51,850 - __main__ - INFO - 波形图已保存: output/cerber_dnn/Cerber4_waveform_20250403_013051.png
+2025-04-03 01:30:52,155 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:30:52,224 - __main__ - INFO - 处理后的音频已保存: output/cerber_dnn/Cerber5_processed_20250403_013052.wav
+2025-04-03 01:30:52,448 - __main__ - INFO - 波形图已保存: output/cerber_dnn/Cerber5_waveform_20250403_013052.png
+2025-04-03 01:30:52,724 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:30:52,735 - acoustic_models.integrated_model - INFO - 开始训练 dnn 模型...
+2025-04-03 01:31:12,379 - __main__ - INFO - 模型训练完成
+2025-04-03 01:31:23,679 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:31:23,679 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:31:23,735 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:31:24,425 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber2_processed_20250403_013124.wav
+2025-04-03 01:31:24,780 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber2_waveform_20250403_013124.png
+2025-04-03 01:31:25,107 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:31:25,156 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber3_processed_20250403_013125.wav
+2025-04-03 01:31:25,339 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber3_waveform_20250403_013125.png
+2025-04-03 01:31:25,551 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:31:25,614 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber6_processed_20250403_013125.wav
+2025-04-03 01:31:25,893 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber6_waveform_20250403_013125.png
+2025-04-03 01:31:26,163 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:31:26,234 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber4_processed_20250403_013126.wav
+2025-04-03 01:31:26,467 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber4_waveform_20250403_013126.png
+2025-04-03 01:31:26,774 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:31:26,839 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber5_processed_20250403_013126.wav
+2025-04-03 01:31:27,062 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber5_waveform_20250403_013126.png
+2025-04-03 01:31:27,326 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:31:27,336 - acoustic_models.integrated_model - INFO - 开始训练 rnn 模型...
+2025-04-03 01:32:39,498 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:32:39,498 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:32:39,541 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:32:40,225 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber2_processed_20250403_013240.wav
+2025-04-03 01:32:40,574 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber2_waveform_20250403_013240.png
+2025-04-03 01:32:40,902 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:32:40,952 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber3_processed_20250403_013240.wav
+2025-04-03 01:32:41,196 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber3_waveform_20250403_013240.png
+2025-04-03 01:32:41,411 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:32:41,477 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber6_processed_20250403_013241.wav
+2025-04-03 01:32:41,691 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber6_waveform_20250403_013241.png
+2025-04-03 01:32:41,962 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:32:42,033 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber4_processed_20250403_013242.wav
+2025-04-03 01:32:42,258 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber4_waveform_20250403_013242.png
+2025-04-03 01:32:42,565 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:32:42,632 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber5_processed_20250403_013242.wav
+2025-04-03 01:32:42,855 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber5_waveform_20250403_013242.png
+2025-04-03 01:32:43,133 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:32:43,143 - acoustic_models.integrated_model - INFO - 开始训练 transformer 模型...
+2025-04-03 01:32:54,185 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:32:54,185 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:32:54,265 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:32:54,951 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_013254.wav
+2025-04-03 01:32:55,304 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_013254.png
+2025-04-03 01:32:55,631 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:32:55,680 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_013255.wav
+2025-04-03 01:32:55,865 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_013255.png
+2025-04-03 01:32:56,076 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:32:56,139 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_013256.wav
+2025-04-03 01:32:56,421 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_013256.png
+2025-04-03 01:32:56,695 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:32:56,766 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_013256.wav
+2025-04-03 01:32:56,992 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_013256.png
+2025-04-03 01:32:57,295 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:32:57,359 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_013257.wav
+2025-04-03 01:32:57,583 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_013257.png
+2025-04-03 01:32:57,854 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:32:57,864 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 01:36:58,505 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:36:58,506 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:36:58,516 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:36:59,198 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber2_processed_20250403_013659.wav
+2025-04-03 01:36:59,547 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber2_waveform_20250403_013659.png
+2025-04-03 01:36:59,855 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:36:59,903 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber3_processed_20250403_013659.wav
+2025-04-03 01:37:00,138 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber3_waveform_20250403_013659.png
+2025-04-03 01:37:00,346 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:37:00,409 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber6_processed_20250403_013700.wav
+2025-04-03 01:37:00,619 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber6_waveform_20250403_013700.png
+2025-04-03 01:37:00,878 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:37:00,946 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber4_processed_20250403_013700.wav
+2025-04-03 01:37:01,170 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber4_waveform_20250403_013700.png
+2025-04-03 01:37:01,468 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:37:01,532 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber5_processed_20250403_013701.wav
+2025-04-03 01:37:01,755 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber5_waveform_20250403_013701.png
+2025-04-03 01:37:02,019 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:37:02,029 - acoustic_models.integrated_model - INFO - 开始训练 cnn 模型...
+2025-04-03 01:37:34,619 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:37:34,619 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:37:34,666 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:37:35,360 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber2_processed_20250403_013735.wav
+2025-04-03 01:37:35,721 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber2_waveform_20250403_013735.png
+2025-04-03 01:37:36,042 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:37:36,090 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber3_processed_20250403_013736.wav
+2025-04-03 01:37:36,326 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber3_waveform_20250403_013736.png
+2025-04-03 01:37:36,533 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:37:36,595 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber6_processed_20250403_013736.wav
+2025-04-03 01:37:36,804 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber6_waveform_20250403_013736.png
+2025-04-03 01:37:37,060 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:37:37,129 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber4_processed_20250403_013737.wav
+2025-04-03 01:37:37,354 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber4_waveform_20250403_013737.png
+2025-04-03 01:37:37,664 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:37:37,729 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber5_processed_20250403_013737.wav
+2025-04-03 01:37:37,946 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber5_waveform_20250403_013737.png
+2025-04-03 01:37:38,209 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:37:38,219 - acoustic_models.integrated_model - INFO - 开始训练 transformer 模型...
+2025-04-03 01:38:37,485 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:38:37,486 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:38:37,541 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:38:38,243 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber2_processed_20250403_013838.wav
+2025-04-03 01:38:38,589 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber2_waveform_20250403_013838.png
+2025-04-03 01:38:38,912 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:38:38,961 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber3_processed_20250403_013838.wav
+2025-04-03 01:38:39,141 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber3_waveform_20250403_013838.png
+2025-04-03 01:38:39,350 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:38:39,412 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber6_processed_20250403_013839.wav
+2025-04-03 01:38:39,688 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber6_waveform_20250403_013839.png
+2025-04-03 01:38:39,955 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:38:40,026 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber4_processed_20250403_013840.wav
+2025-04-03 01:38:40,253 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber4_waveform_20250403_013840.png
+2025-04-03 01:38:40,551 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:38:40,616 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber5_processed_20250403_013840.wav
+2025-04-03 01:38:40,836 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber5_waveform_20250403_013840.png
+2025-04-03 01:38:41,110 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:38:41,119 - acoustic_models.integrated_model - INFO - 开始训练 rnn 模型...
+2025-04-03 01:39:30,174 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:39:30,174 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:39:30,259 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:39:30,946 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_013930.wav
+2025-04-03 01:39:31,304 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_013930.png
+2025-04-03 01:39:31,635 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:39:31,684 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_013931.wav
+2025-04-03 01:39:31,870 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_013931.png
+2025-04-03 01:39:32,077 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:39:32,140 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_013932.wav
+2025-04-03 01:39:32,412 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_013932.png
+2025-04-03 01:39:32,676 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:39:32,748 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_013932.wav
+2025-04-03 01:39:32,976 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_013932.png
+2025-04-03 01:39:33,276 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:39:33,340 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_013933.wav
+2025-04-03 01:39:33,564 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_013933.png
+2025-04-03 01:39:33,834 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:39:33,843 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 01:40:32,302 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:40:32,303 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:40:32,486 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:40:33,172 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber2_processed_20250403_014033.wav
+2025-04-03 01:40:33,529 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber2_waveform_20250403_014033.png
+2025-04-03 01:40:33,846 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:40:33,896 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber3_processed_20250403_014033.wav
+2025-04-03 01:40:34,079 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber3_waveform_20250403_014033.png
+2025-04-03 01:40:34,287 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:40:34,350 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber6_processed_20250403_014034.wav
+2025-04-03 01:40:34,618 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber6_waveform_20250403_014034.png
+2025-04-03 01:40:34,878 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:40:34,948 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber4_processed_20250403_014034.wav
+2025-04-03 01:40:35,172 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber4_waveform_20250403_014034.png
+2025-04-03 01:40:35,467 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:40:35,534 - __main__ - INFO - 处理后的音频已保存: output/cerber_all_models/Cerber5_processed_20250403_014035.wav
+2025-04-03 01:40:35,753 - __main__ - INFO - 波形图已保存: output/cerber_all_models/Cerber5_waveform_20250403_014035.png
+2025-04-03 01:40:36,018 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:40:36,028 - acoustic_models.integrated_model - INFO - 开始训练 gmm_hmm 模型...
+2025-04-03 01:40:37,270 - hmmlearn.base - WARNING - Even though the 'startprob_' attribute is set, it will be overwritten during initialization because 'init_params' contains 's'
+2025-04-03 01:40:37,270 - hmmlearn.base - WARNING - Even though the 'transmat_' attribute is set, it will be overwritten during initialization because 'init_params' contains 't'
+2025-04-03 01:41:44,792 - acoustic_models.integrated_model - INFO - 开始训练 dnn 模型...
+2025-04-03 01:42:03,197 - acoustic_models.integrated_model - INFO - 开始训练 cnn 模型...
+2025-04-03 01:42:35,051 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:42:35,051 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:42:35,063 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:42:35,831 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber2_processed_20250403_014235.wav
+2025-04-03 01:42:36,190 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber2_waveform_20250403_014235.png
+2025-04-03 01:42:36,515 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:42:36,565 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber3_processed_20250403_014236.wav
+2025-04-03 01:42:36,813 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber3_waveform_20250403_014236.png
+2025-04-03 01:42:37,026 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:42:37,091 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber6_processed_20250403_014237.wav
+2025-04-03 01:42:37,304 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber6_waveform_20250403_014237.png
+2025-04-03 01:42:37,576 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:42:37,649 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber4_processed_20250403_014237.wav
+2025-04-03 01:42:37,880 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber4_waveform_20250403_014237.png
+2025-04-03 01:42:38,185 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:42:38,251 - __main__ - INFO - 处理后的音频已保存: output/cerber_cnn/Cerber5_processed_20250403_014238.wav
+2025-04-03 01:42:38,475 - __main__ - INFO - 波形图已保存: output/cerber_cnn/Cerber5_waveform_20250403_014238.png
+2025-04-03 01:42:38,749 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:42:38,759 - acoustic_models.integrated_model - INFO - 开始训练 cnn 模型...
+2025-04-03 01:49:35,729 - __main__ - INFO - 模型训练完成
+2025-04-03 01:50:06,230 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:50:06,231 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:50:06,279 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:50:07,043 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber2_processed_20250403_015007.wav
+2025-04-03 01:50:07,404 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber2_waveform_20250403_015007.png
+2025-04-03 01:50:07,742 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:50:07,794 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber3_processed_20250403_015007.wav
+2025-04-03 01:50:08,043 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber3_waveform_20250403_015007.png
+2025-04-03 01:50:08,260 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:50:08,326 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber6_processed_20250403_015008.wav
+2025-04-03 01:50:08,543 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber6_waveform_20250403_015008.png
+2025-04-03 01:50:08,821 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:50:08,892 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber4_processed_20250403_015008.wav
+2025-04-03 01:50:09,120 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber4_waveform_20250403_015008.png
+2025-04-03 01:50:09,448 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:50:09,516 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber5_processed_20250403_015009.wav
+2025-04-03 01:50:09,742 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber5_waveform_20250403_015009.png
+2025-04-03 01:50:10,015 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:50:10,027 - acoustic_models.integrated_model - INFO - 开始训练 transformer 模型...
+2025-04-03 01:51:01,129 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:51:01,130 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:51:01,174 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:51:01,872 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber2_processed_20250403_015101.wav
+2025-04-03 01:51:02,225 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber2_waveform_20250403_015101.png
+2025-04-03 01:51:02,538 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:51:02,586 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber3_processed_20250403_015102.wav
+2025-04-03 01:51:02,822 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber3_waveform_20250403_015102.png
+2025-04-03 01:51:03,029 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:51:03,092 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber6_processed_20250403_015103.wav
+2025-04-03 01:51:03,301 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber6_waveform_20250403_015103.png
+2025-04-03 01:51:03,563 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:51:03,633 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber4_processed_20250403_015103.wav
+2025-04-03 01:51:03,853 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber4_waveform_20250403_015103.png
+2025-04-03 01:51:04,147 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:51:04,210 - __main__ - INFO - 处理后的音频已保存: output/cerber_transformer/Cerber5_processed_20250403_015104.wav
+2025-04-03 01:51:04,429 - __main__ - INFO - 波形图已保存: output/cerber_transformer/Cerber5_waveform_20250403_015104.png
+2025-04-03 01:51:04,702 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:51:04,712 - acoustic_models.integrated_model - INFO - 开始训练 transformer 模型...
+2025-04-03 01:55:29,070 - __main__ - INFO - 模型训练完成
+2025-04-03 01:55:55,401 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:55:55,402 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:55:55,455 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:55:56,239 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber2_processed_20250403_015556.wav
+2025-04-03 01:55:56,582 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber2_waveform_20250403_015556.png
+2025-04-03 01:55:56,901 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:55:56,950 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber3_processed_20250403_015556.wav
+2025-04-03 01:55:57,130 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber3_waveform_20250403_015556.png
+2025-04-03 01:55:57,340 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:55:57,403 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber6_processed_20250403_015557.wav
+2025-04-03 01:55:57,672 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber6_waveform_20250403_015557.png
+2025-04-03 01:55:57,944 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:55:58,015 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber4_processed_20250403_015558.wav
+2025-04-03 01:55:58,240 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber4_waveform_20250403_015558.png
+2025-04-03 01:55:58,534 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:55:58,599 - __main__ - INFO - 处理后的音频已保存: output/cerber_rnn/Cerber5_processed_20250403_015558.wav
+2025-04-03 01:55:58,818 - __main__ - INFO - 波形图已保存: output/cerber_rnn/Cerber5_waveform_20250403_015558.png
+2025-04-03 01:55:59,086 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:55:59,095 - acoustic_models.integrated_model - INFO - 开始训练 rnn 模型...
+2025-04-03 01:57:56,944 - __main__ - INFO - 模型训练完成
+2025-04-03 01:58:09,644 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:58:09,644 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:58:09,729 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:58:10,419 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_015810.wav
+2025-04-03 01:58:10,770 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_015810.png
+2025-04-03 01:58:11,085 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:58:11,133 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_015811.wav
+2025-04-03 01:58:11,314 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_015811.png
+2025-04-03 01:58:11,525 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:58:11,587 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_015811.wav
+2025-04-03 01:58:11,858 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_015811.png
+2025-04-03 01:58:12,126 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:58:12,196 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_015812.wav
+2025-04-03 01:58:12,421 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_015812.png
+2025-04-03 01:58:12,722 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:58:12,787 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_015812.wav
+2025-04-03 01:58:13,007 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_015812.png
+2025-04-03 01:58:13,269 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:58:13,279 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 01:58:58,324 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:58:58,325 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:58:58,410 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:58:59,107 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_015859.wav
+2025-04-03 01:58:59,468 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_015859.png
+2025-04-03 01:58:59,795 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:58:59,843 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_015859.wav
+2025-04-03 01:59:00,028 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_015859.png
+2025-04-03 01:59:00,240 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:59:00,304 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_015900.wav
+2025-04-03 01:59:00,592 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_015900.png
+2025-04-03 01:59:00,862 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:59:00,933 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_015900.wav
+2025-04-03 01:59:01,159 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_015900.png
+2025-04-03 01:59:01,499 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:59:01,568 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_015901.wav
+2025-04-03 01:59:01,791 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_015901.png
+2025-04-03 01:59:02,063 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:59:02,074 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 01:59:36,783 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 01:59:36,783 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 01:59:36,868 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 01:59:37,574 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_015937.wav
+2025-04-03 01:59:37,929 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_015937.png
+2025-04-03 01:59:38,245 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 01:59:38,294 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_015938.wav
+2025-04-03 01:59:38,474 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_015938.png
+2025-04-03 01:59:38,682 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 01:59:38,744 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_015938.wav
+2025-04-03 01:59:39,013 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_015938.png
+2025-04-03 01:59:39,276 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 01:59:39,345 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_015939.wav
+2025-04-03 01:59:39,570 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_015939.png
+2025-04-03 01:59:39,871 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 01:59:39,936 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_015939.wav
+2025-04-03 01:59:40,158 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_015939.png
+2025-04-03 01:59:40,427 - __main__ - INFO - 开始训练模型...
+2025-04-03 01:59:40,440 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 02:00:16,556 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 02:00:16,557 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 02:00:16,641 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 02:00:17,341 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_020017.wav
+2025-04-03 02:00:17,697 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_020017.png
+2025-04-03 02:00:18,024 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 02:00:18,073 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_020018.wav
+2025-04-03 02:00:18,262 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_020018.png
+2025-04-03 02:00:18,471 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 02:00:18,535 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_020018.wav
+2025-04-03 02:00:18,817 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_020018.png
+2025-04-03 02:00:19,088 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 02:00:19,160 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_020019.wav
+2025-04-03 02:00:19,387 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_020019.png
+2025-04-03 02:00:19,702 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 02:00:19,770 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_020019.wav
+2025-04-03 02:00:19,992 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_020019.png
+2025-04-03 02:00:20,261 - __main__ - INFO - 开始训练模型...
+2025-04-03 02:00:20,273 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 03:30:42,436 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 03:30:42,437 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 03:30:42,504 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 03:30:43,046 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber2_processed_20250403_033043.wav
+2025-04-03 03:30:43,302 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber2_waveform_20250403_033043.png
+2025-04-03 03:30:43,569 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 03:30:43,607 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber3_processed_20250403_033043.wav
+2025-04-03 03:30:43,749 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber3_waveform_20250403_033043.png
+2025-04-03 03:30:43,915 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 03:30:43,964 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber6_processed_20250403_033043.wav
+2025-04-03 03:30:44,176 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber6_waveform_20250403_033043.png
+2025-04-03 03:30:44,389 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 03:30:44,442 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber4_processed_20250403_033044.wav
+2025-04-03 03:30:44,607 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber4_waveform_20250403_033044.png
+2025-04-03 03:30:44,861 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 03:30:44,914 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc/Cerber5_processed_20250403_033044.wav
+2025-04-03 03:30:45,077 - __main__ - INFO - 波形图已保存: output/cerber_ctc/Cerber5_waveform_20250403_033044.png
+2025-04-03 03:30:45,292 - __main__ - INFO - 开始训练模型...
+2025-04-03 03:30:45,300 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 04:19:28,209 - __main__ - INFO - 模型训练完成
+2025-04-03 05:06:44,278 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 05:06:44,279 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 05:06:44,356 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 05:06:45,912 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_improved/Cerber2_processed_20250403_050645.wav
+2025-04-03 05:06:46,224 - __main__ - INFO - 波形图已保存: output/cerber_ctc_improved/Cerber2_waveform_20250403_050645.png
+2025-04-03 05:06:46,503 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 05:06:46,540 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_improved/Cerber3_processed_20250403_050646.wav
+2025-04-03 05:06:46,681 - __main__ - INFO - 波形图已保存: output/cerber_ctc_improved/Cerber3_waveform_20250403_050646.png
+2025-04-03 05:06:46,852 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 05:06:46,900 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_improved/Cerber6_processed_20250403_050646.wav
+2025-04-03 05:06:47,110 - __main__ - INFO - 波形图已保存: output/cerber_ctc_improved/Cerber6_waveform_20250403_050646.png
+2025-04-03 05:06:47,325 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 05:06:47,380 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_improved/Cerber4_processed_20250403_050647.wav
+2025-04-03 05:06:47,547 - __main__ - INFO - 波形图已保存: output/cerber_ctc_improved/Cerber4_waveform_20250403_050647.png
+2025-04-03 05:06:47,802 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 05:06:47,852 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_improved/Cerber5_processed_20250403_050647.wav
+2025-04-03 05:06:48,022 - __main__ - INFO - 波形图已保存: output/cerber_ctc_improved/Cerber5_waveform_20250403_050647.png
+2025-04-03 05:06:48,237 - __main__ - INFO - 开始训练模型...
+2025-04-03 05:06:48,245 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...
+2025-04-03 05:55:24,315 - __main__ - INFO - 模型训练完成
+2025-04-03 06:02:13,265 - __main__ - INFO - 从目录加载音频文件: /Users/ericzhong/Desktop/More Data
+2025-04-03 06:02:13,266 - __main__ - INFO - 找到 5 个音频文件
+2025-04-03 06:02:13,353 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber2.mp3
+2025-04-03 06:02:14,119 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_advanced/Cerber2_processed_20250403_060214.wav
+2025-04-03 06:02:14,412 - __main__ - INFO - 波形图已保存: output/cerber_ctc_advanced/Cerber2_waveform_20250403_060214.png
+2025-04-03 06:02:14,699 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber3.mp3
+2025-04-03 06:02:14,738 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_advanced/Cerber3_processed_20250403_060214.wav
+2025-04-03 06:02:14,879 - __main__ - INFO - 波形图已保存: output/cerber_ctc_advanced/Cerber3_waveform_20250403_060214.png
+2025-04-03 06:02:15,049 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber6.mp3
+2025-04-03 06:02:15,098 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_advanced/Cerber6_processed_20250403_060215.wav
+2025-04-03 06:02:15,315 - __main__ - INFO - 波形图已保存: output/cerber_ctc_advanced/Cerber6_waveform_20250403_060215.png
+2025-04-03 06:02:15,525 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber4.mp3
+2025-04-03 06:02:15,580 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_advanced/Cerber4_processed_20250403_060215.wav
+2025-04-03 06:02:15,753 - __main__ - INFO - 波形图已保存: output/cerber_ctc_advanced/Cerber4_waveform_20250403_060215.png
+2025-04-03 06:02:16,016 - __main__ - INFO - 处理音频文件: /Users/ericzhong/Desktop/More Data/Cerber5.mp3
+2025-04-03 06:02:16,066 - __main__ - INFO - 处理后的音频已保存: output/cerber_ctc_advanced/Cerber5_processed_20250403_060216.wav
+2025-04-03 06:02:16,235 - __main__ - INFO - 波形图已保存: output/cerber_ctc_advanced/Cerber5_waveform_20250403_060216.png
+2025-04-03 06:02:16,445 - __main__ - INFO - 开始训练模型...
+2025-04-03 06:02:16,454 - acoustic_models.integrated_model - INFO - 开始训练 ctc 模型...

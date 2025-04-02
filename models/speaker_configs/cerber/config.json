@@ -1,0 +1,65 @@
+{
+    "speaker_id": "cerber",
+    "model_configs": {
+        "gmm_hmm": {
+            "n_components": 16,
+            "n_iter": 100,
+            "covariance_type": "diag"
+        },
+        "dnn": {
+            "hidden_layers": [
+                256,
+                128
+            ],
+            "dropout_rate": 0.3,
+            "learning_rate": 0.001
+        },
+        "cnn": {
+            "conv_layers": [
+                [
+                    32,
+                    3
+                ],
+                [
+                    64,
+                    3
+                ]
+            ],
+            "pool_size": 2,
+            "learning_rate": 0.001
+        },
+        "rnn": {
+            "hidden_size": 256,
+            "num_layers": 2,
+            "dropout": 0.3,
+            "learning_rate": 0.001
+        },
+        "transformer": {
+            "d_model": 256,
+            "nhead": 8,
+            "num_layers": 6,
+            "dropout": 0.1,
+            "learning_rate": 0.0001
+        },
+        "ctc": {
+            "hidden_size": 256,
+            "num_layers": 3,
+            "dropout": 0.3,
+            "learning_rate": 0.001
+        }
+    },
+    "training_history": {
+        "last_training": "2025-04-03 05:55:24.314371",
+        "best_accuracy": 0.0,
+        "total_training_time": 6738.199061
+    },
+    "feature_config": {
+        "sample_rate": 16000,
+        "n_mfcc": 13,
+        "n_mels": 80,
+        "hop_length": 160,
+        "n_fft": 512,
+        "deltas": true,
+        "cmvn": true
+    }
+}

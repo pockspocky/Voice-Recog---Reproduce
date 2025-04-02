@@ -200,4 +200,106 @@ class GMMHMM:
             for model_file in os.listdir(hmm_dir):
                 if model_file.endswith('.pkl'):
                     phoneme_id = model_file[:-4]  # 去掉.pkl后缀
-                    self.models[phoneme_id] = joblib.load(os.path.join(hmm_dir, model_file)) 
+                    self.models[phoneme_id] = joblib.load(os.path.join(hmm_dir, model_file))
+    
+    def train(self, features, labels):
+        """
+        训练GMM-HMM模型
+        
+        参数:
+            features: 特征字典或数组
+            labels: 标签数组
+            
+        返回:
+            字典形式的训练历史记录
+        """
+        # 如果features是字典，则转换为数组
+        if isinstance(features, dict):
+            feature_array = np.vstack([feat for feat_name, feat in features.items()])
+        else:
+            feature_array = features
+            
+        # 按标签分组
+        unique_labels = np.unique(labels)
+        feature_groups = {}
+        
+        for label in unique_labels:
+            # 收集该标签对应的所有特征
+            label_features = feature_array[labels == label]
+            feature_groups[str(label)] = label_features
+            
+            # 训练该标签的GMM
+            self.train_gmm(label_features, str(label))
+            
+            # 将特征分段，用于HMM训练
+            # 这里简单处理，假设每个标签的特征是连续的
+            feature_segments = []
+            start_idx = 0
+            for i in range(1, len(labels)):
+                if labels[i] != labels[i-1] and labels[i-1] == label:
+                    # 找到一个连续段的结束
+                    end_idx = i
+                    segment = feature_array[start_idx:end_idx]
+                    if len(segment) > 0:
+                        feature_segments.append(segment)
+                    start_idx = i
+                    
+            # 添加最后一个段
+            if start_idx < len(labels) and labels[-1] == label:
+                segment = feature_array[start_idx:]
+                if len(segment) > 0:
+                    feature_segments.append(segment)
+                    
+            # 确保有至少一个特征段用于训练
+            if not feature_segments and len(label_features) > 0:
+                # 如果没有找到段，使用所有特征作为一个段
+                feature_segments = [label_features]
+                
+            # 训练HMM
+            if feature_segments:
+                self.train_hmm(feature_segments, str(label))
+                
+        # 返回简单的训练历史
+        history = {
+            'loss': [0.0],  # 占位符
+            'accuracy': [len(self.models) / len(unique_labels)]  # 训练的模型比例
+        }
+        
+        return history
+    
+    def predict(self, features):
+        """
+        使用GMM-HMM模型进行预测
+        
+        参数:
+            features: 特征字典或数组
+            
+        返回:
+            预测的标签数组
+        """
+        # 如果features是字典，则转换为数组
+        if isinstance(features, dict):
+            feature_array = np.vstack([feat for feat_name, feat in features.items()])
+        else:
+            feature_array = features
+            
+        # 初始化预测结果
+        predictions = np.zeros(len(feature_array), dtype=np.int)
+        
+        # 对每个特征帧进行预测
+        for i, feature in enumerate(feature_array):
+            # 计算每个模型的得分
+            scores = {}
+            for phoneme_id in self.models.keys():
+                try:
+                    # 使用GMM评分，计算更快
+                    scores[phoneme_id] = self.gmm_score(feature.reshape(1, -1), phoneme_id)
+                except:
+                    scores[phoneme_id] = float('-inf')
+            
+            # 选择得分最高的模型
+            if scores:
+                best_phoneme = max(scores.items(), key=lambda x: x[1])[0]
+                predictions[i] = int(best_phoneme)
+                
+        return predictions 

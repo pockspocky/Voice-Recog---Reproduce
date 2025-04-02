@@ -12,6 +12,7 @@ from torch.utils.data import Dataset, DataLoader
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 from einops import rearrange
+import logging
 
 
 class PositionalEncoding(nn.Module):
@@ -144,6 +145,9 @@ class TransformerModel(nn.Module):
         self.dropout = dropout
         self.max_len = max_len
         
+        # 添加日志记录器
+        self.logger = logging.getLogger(__name__)
+        
         # 输入映射层
         self.input_mapping = nn.Linear(input_dim, d_model)
         
@@ -166,21 +170,38 @@ class TransformerModel(nn.Module):
             if p.dim() > 1:
                 nn.init.xavier_uniform_(p)
     
-    def forward(self, src, src_key_padding_mask=None):
+    def forward(self, x, src_key_padding_mask=None):
         """
         前向传播
         
         参数:
-            src: 输入特征，形状为(batch_size, seq_len, input_dim)
+            x: 输入特征，形状为(batch_size, seq_len, input_dim)
             src_key_padding_mask: 源序列填充掩码，形状为(batch_size, seq_len)，
                                   True表示填充位置
             
         返回:
             输出，形状为(batch_size, seq_len, output_dim)
         """
+        # 检查输入维度，确保与模型期望的维度匹配
+        if len(x.shape) == 2:  # 如果输入是(batch_size, input_dim)
+            x = x.unsqueeze(1)  # 变成(batch_size, 1, input_dim)
+        
+        # 确保d_model的值匹配
+        batch_size, seq_len, feature_dim = x.shape
+        if feature_dim != self.input_dim:
+            self.logger.warning(f"输入特征维度不匹配: 预期{self.input_dim}，实际{feature_dim}")
+            # 如果维度不匹配，可以通过线性层或其他方式进行调整
+            x = x.reshape(batch_size, seq_len, -1)
+            # 如果特征维度太大，截断；如果太小，填充
+            if feature_dim > self.input_dim:
+                x = x[:, :, :self.input_dim]
+            elif feature_dim < self.input_dim:
+                padding = torch.zeros(batch_size, seq_len, self.input_dim - feature_dim, device=x.device)
+                x = torch.cat([x, padding], dim=2)
+        
         # 输入映射
         # (batch_size, seq_len, input_dim) -> (batch_size, seq_len, d_model)
-        src = self.input_mapping(src)
+        src = self.input_mapping(x)
         
         # 位置编码
         src = self.pos_encoder(src)
@@ -232,13 +253,15 @@ class TransformerTrainer:
             save_dir: 模型保存目录
         """
         self.optimizer = optim.Adam(self.model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+        self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
+            self.optimizer, mode='min', factor=0.5, patience=3, verbose=True
+        )
         
         # 创建保存目录
         os.makedirs(save_dir, exist_ok=True)
         
         best_val_loss = float('inf')
         patience_counter = 0
-        step = 0
         
         for epoch in range(epochs):
             # 训练阶段
@@ -248,24 +271,44 @@ class TransformerTrainer:
             train_total = 0
             
             pbar = tqdm(train_loader, desc=f"Epoch {epoch+1}/{epochs} [Train]")
-            for features, labels, mask in pbar:
-                features, labels, mask = features.to(self.device), labels.to(self.device), mask.to(self.device)
+            for batch in pbar:
+                # 检查batch是返回2个值还是3个值
+                if len(batch) == 3:
+                    features, labels, mask = batch
+                    # 创建填充掩码
+                    padding_mask = mask.bool()  # True表示填充位置
+                else:
+                    features, labels = batch
+                    # 不使用掩码，创建一个全False的掩码
+                    padding_mask = torch.zeros(features.size(0), features.size(1) if len(features.shape) > 2 else 1, dtype=torch.bool, device=features.device)
                 
-                # 更新学习率（预热）
-                if step < warmup_steps:
-                    lr = learning_rate * min(step ** (-0.5), step * warmup_steps ** (-1.5))
-                    for param_group in self.optimizer.param_groups:
-                        param_group['lr'] = lr
+                features, labels = features.to(self.device), labels.to(self.device)
+                padding_mask = padding_mask.to(self.device)
                 
                 # 前向传播
                 self.optimizer.zero_grad()
-                outputs = self.model(features, src_key_padding_mask=mask.bool())
+                
+                # 检查和调整padding_mask的形状
+                if padding_mask.shape[1] != 1 and len(features.shape) > 2 and features.shape[1] != padding_mask.shape[1]:
+                    # 调整padding_mask大小与features的序列长度匹配
+                    if padding_mask.shape[1] > features.shape[1]:
+                        padding_mask = padding_mask[:, :features.shape[1]]
+                    else:
+                        # 扩展padding_mask
+                        new_padding = torch.zeros(padding_mask.shape[0], features.shape[1] - padding_mask.shape[1], 
+                                                 dtype=torch.bool, device=padding_mask.device)
+                        padding_mask = torch.cat([padding_mask, new_padding], dim=1)
+                
+                outputs = self.model(features, padding_mask)
                 
                 # 重塑输出和标签以计算损失
+                # outputs形状: (batch_size, seq_len, output_dim)
+                # 转换为: (batch_size * seq_len, output_dim)
                 batch_size, seq_len, output_dim = outputs.size()
                 outputs = outputs.reshape(-1, output_dim)
                 labels = labels.reshape(-1)
                 
+                # 使用交叉熵损失
                 loss = self.criterion(outputs, labels)
                 
                 # 反向传播
@@ -286,8 +329,6 @@ class TransformerTrainer:
                 
                 # 更新进度条
                 pbar.set_postfix({"loss": loss.item(), "acc": train_correct/(train_total+1e-8)})
-                
-                step += 1
             
             train_loss = train_loss / len(train_loader.dataset)
             train_acc = train_correct / (train_total + 1e-8)
@@ -348,17 +389,40 @@ class TransformerTrainer:
         val_total = 0
         
         with torch.no_grad():
-            for features, labels, mask in tqdm(val_loader, desc="Validating"):
-                features, labels, mask = features.to(self.device), labels.to(self.device), mask.to(self.device)
+            for batch in tqdm(val_loader, desc="Validating"):
+                # 检查batch是返回2个值还是3个值
+                if len(batch) == 3:
+                    features, labels, mask = batch
+                    # 创建填充掩码
+                    padding_mask = mask.bool()  # True表示填充位置
+                else:
+                    features, labels = batch
+                    # 不使用掩码，创建一个全False的掩码
+                    padding_mask = torch.zeros(features.size(0), features.size(1) if len(features.shape) > 2 else 1, dtype=torch.bool, device=features.device)
+                
+                features, labels = features.to(self.device), labels.to(self.device)
+                padding_mask = padding_mask.to(self.device)
+                
+                # 检查和调整padding_mask的形状
+                if padding_mask.shape[1] != 1 and len(features.shape) > 2 and features.shape[1] != padding_mask.shape[1]:
+                    # 调整padding_mask大小与features的序列长度匹配
+                    if padding_mask.shape[1] > features.shape[1]:
+                        padding_mask = padding_mask[:, :features.shape[1]]
+                    else:
+                        # 扩展padding_mask
+                        new_padding = torch.zeros(padding_mask.shape[0], features.shape[1] - padding_mask.shape[1], 
+                                                 dtype=torch.bool, device=padding_mask.device)
+                        padding_mask = torch.cat([padding_mask, new_padding], dim=1)
                 
                 # 前向传播
-                outputs = self.model(features, src_key_padding_mask=mask.bool())
+                outputs = self.model(features, padding_mask)
                 
                 # 重塑输出和标签以计算损失
                 batch_size, seq_len, output_dim = outputs.size()
                 outputs = outputs.reshape(-1, output_dim)
                 labels = labels.reshape(-1)
                 
+                # 计算损失
                 loss = self.criterion(outputs, labels)
                 
                 val_loss += loss.item() * batch_size

@@ -36,7 +36,15 @@ class CTCDataset(Dataset):
         
         # 计算目标长度
         if target_lens is None:
-            self.target_lens = [len(t) for t in targets]
+            # 检查目标是否为标量值数组
+            if hasattr(targets, 'ndim') and targets.ndim == 1:
+                # 如果targets是一维数组，则每个目标的长度为1
+                self.target_lens = [1] * len(targets)
+                # 将每个标量目标转换为长度为1的数组
+                self.targets = [[t] for t in targets]
+            else:
+                # 正常情况，每个目标是一个序列
+                self.target_lens = [len(t) for t in targets]
         else:
             self.target_lens = target_lens
     
@@ -76,7 +84,11 @@ def collate_fn(batch):
     max_target_len = max(target_lens)
     
     # 获取特征维度
-    feature_dim = features[0].size(1)
+    if len(features[0].shape) > 1:
+        feature_dim = features[0].size(1)
+    else:
+        # 如果特征是一维的，将维度设为1
+        feature_dim = 1
     
     # 初始化填充张量
     features_padded = torch.zeros(len(features), max_feature_len, feature_dim)
@@ -84,6 +96,11 @@ def collate_fn(batch):
     
     # 填充
     for i, (feature, target) in enumerate(zip(features, targets)):
+        # 处理特征的形状
+        if len(feature.shape) == 1:
+            # 如果是一维特征，添加一个维度
+            feature = feature.unsqueeze(1)
+        
         features_padded[i, :feature_lens[i]] = feature
         targets_padded[i, :target_lens[i]] = target
     
@@ -172,6 +189,18 @@ class CTCRNN(nn.Module):
             logits: 输出对数概率，形状为(batch_size, seq_len, output_dim)
             output_lens: 输出序列长度，形状为(batch_size,)
         """
+        # 检查和修正输入维度
+        if x.size(2) != self.input_dim:
+            # 处理输入维度不匹配
+            batch_size, seq_len, feature_dim = x.size()
+            if feature_dim > self.input_dim:
+                # 如果特征维度太大，截断
+                x = x[:, :, :self.input_dim]
+            else:
+                # 如果特征维度太小，填充
+                padding = torch.zeros(batch_size, seq_len, self.input_dim - feature_dim, device=x.device)
+                x = torch.cat([x, padding], dim=2)
+        
         # 打包序列以忽略填充
         packed_x = nn.utils.rnn.pack_padded_sequence(x, x_lens, batch_first=True)
         
@@ -209,8 +238,8 @@ class CTCTrainer:
         self.scheduler = None
         self.history = {'train_loss': [], 'val_loss': []}
     
-    def train(self, train_loader, val_loader=None, epochs=50, learning_rate=0.001, 
-              weight_decay=1e-5, patience=5, clip_grad=5.0, save_dir="models"):
+    def train(self, train_loader, val_loader=None, epochs=30, learning_rate=0.0001, weight_decay=1e-5, 
+              patience=5, clip_grad=3.0, save_dir="models/ctc"):
         """
         训练模型
         
@@ -224,9 +253,14 @@ class CTCTrainer:
             clip_grad: 梯度裁剪值
             save_dir: 模型保存目录
         """
-        self.optimizer = optim.Adam(self.model.parameters(), lr=learning_rate, weight_decay=weight_decay)
+        self.optimizer = optim.RMSprop(
+            self.model.parameters(), 
+            lr=learning_rate, 
+            weight_decay=weight_decay,
+            momentum=0.9
+        )
         self.scheduler = optim.lr_scheduler.ReduceLROnPlateau(
-            self.optimizer, mode='min', factor=0.5, patience=3, verbose=True
+            self.optimizer, mode='min', factor=0.8, patience=2, verbose=True
         )
         
         # 创建保存目录
@@ -248,12 +282,12 @@ class CTCTrainer:
                 self.optimizer.zero_grad()
                 log_probs, output_lens = self.model(features, feature_lens)
                 
-                # 计算损失
+                # 计算CTC损失
                 loss = self.criterion(
-                    log_probs.transpose(0, 1),  # (T, N, C)
+                    log_probs.permute(1, 0, 2),  # 转换为(time, batch, classes)
                     targets,
-                    output_lens,
-                    target_lens
+                    torch.tensor(output_lens, dtype=torch.int32, device=self.device),
+                    torch.tensor(target_lens, dtype=torch.int32, device=self.device)
                 )
                 
                 # 反向传播
@@ -330,12 +364,12 @@ class CTCTrainer:
                 # 前向传播
                 log_probs, output_lens = self.model(features, feature_lens)
                 
-                # 计算损失
+                # 计算CTC损失
                 loss = self.criterion(
-                    log_probs.transpose(0, 1),  # (T, N, C)
+                    log_probs.permute(1, 0, 2),  # 转换为(time, batch, classes)
                     targets,
-                    output_lens,
-                    target_lens
+                    torch.tensor(output_lens, dtype=torch.int32, device=self.device),
+                    torch.tensor(target_lens, dtype=torch.int32, device=self.device)
                 )
                 
                 val_loss += loss.item()
@@ -474,4 +508,208 @@ class CTCTrainer:
         
         plt.tight_layout()
         plt.savefig('ctc_training_history.png')
-        plt.close() 
+        plt.close()
+
+
+class CTCModel:
+    """CTC声学模型封装类，用于与系统其他部分交互"""
+    
+    def __init__(self, input_dim=40, hidden_dim=512, output_dim=42, 
+                 num_layers=2, bidirectional=True, speaker_id=None):
+        """
+        初始化CTC模型
+        
+        参数:
+            input_dim: 输入特征维度
+            hidden_dim: 隐藏层维度
+            output_dim: 输出维度（音素/字符数 + 1，加1是为了blank标记）
+            num_layers: RNN层数
+            bidirectional: 是否使用双向RNN
+            speaker_id: 说话人ID
+        """
+        self.input_dim = input_dim
+        self.hidden_dim = hidden_dim
+        self.output_dim = output_dim
+        self.num_layers = num_layers
+        self.bidirectional = bidirectional
+        self.speaker_id = speaker_id
+        
+        # 创建模型
+        self.model = CTCRNN(
+            input_dim=input_dim,
+            hidden_dim=hidden_dim,
+            output_dim=output_dim,
+            num_layers=num_layers,
+            bidirectional=bidirectional
+        )
+        
+        # 创建训练器
+        self.trainer = CTCTrainer(self.model)
+        
+        # 设备
+        self.device = "cuda" if torch.cuda.is_available() else "cpu"
+        self.model.to(self.device)
+        
+        # 训练历史
+        self.history = None
+        
+    def to(self, device):
+        """
+        将模型移动到指定设备
+        
+        参数:
+            device: 目标设备（"cuda"或"cpu"）
+            
+        返回:
+            self: 返回自身，便于链式调用
+        """
+        self.device = device
+        self.model.to(device)
+        self.trainer.device = device
+        return self
+        
+    def train(self, features, labels, epochs=30, batch_size=32, learning_rate=0.001):
+        """
+        训练模型
+        
+        参数:
+            features: 特征列表，每个元素是一个形状为(time_steps, feature_dim)的NumPy数组
+            labels: 标签列表，每个元素是一个形状为(label_len,)的NumPy数组
+            epochs: 训练轮数
+            batch_size: 批次大小
+            learning_rate: 学习率
+            
+        返回:
+            训练历史
+        """
+        # 处理特征字典情况
+        if isinstance(features, dict):
+            # 选择一个特征类型（如MFCC）用于训练
+            if 'mfcc_librosa' in features:
+                selected_features = features['mfcc_librosa']
+            elif 'melspectrogram' in features:
+                selected_features = features['melspectrogram']
+            else:
+                # 使用第一个可用的特征类型
+                selected_features = next(iter(features.values()))
+            features = selected_features
+        
+        # 确保标签是整数类型
+        labels = np.array(labels, dtype=np.int64)
+        
+        # 处理一维数组标签
+        if labels.ndim == 1:
+            # 每个样本一个标签
+            labels = [[l] for l in labels]
+        
+        # 创建数据集
+        dataset = CTCDataset(features, labels)
+        
+        # 创建数据加载器
+        loader = DataLoader(
+            dataset, 
+            batch_size=batch_size, 
+            shuffle=True, 
+            collate_fn=collate_fn,
+            num_workers=0
+        )
+        
+        # 训练模型
+        self.history = self.trainer.train(
+            train_loader=loader,
+            epochs=epochs,
+            learning_rate=learning_rate,
+            save_dir=f"models/ctc_{self.speaker_id}" if self.speaker_id else "models/ctc"
+        )
+        
+        return self.history
+    
+    def predict(self, features, batch_size=32):
+        """
+        使用模型进行预测
+        
+        参数:
+            features: 特征列表，每个元素是一个形状为(time_steps, feature_dim)的NumPy数组
+            batch_size: 批次大小
+            
+        返回:
+            预测结果列表
+        """
+        # 创建假标签（仅用于数据集构建）
+        dummy_labels = [np.zeros(1, dtype=np.int64) for _ in range(len(features))]
+        
+        # 创建数据集
+        dataset = CTCDataset(features, dummy_labels)
+        
+        # 创建数据加载器
+        loader = DataLoader(
+            dataset, 
+            batch_size=batch_size, 
+            shuffle=False, 
+            collate_fn=collate_fn,
+            num_workers=0
+        )
+        
+        # 进行预测
+        predictions = self.trainer.predict(loader)
+        
+        return predictions
+    
+    def evaluate(self, features, labels, batch_size=32):
+        """
+        评估模型
+        
+        参数:
+            features: 特征列表，每个元素是一个形状为(time_steps, feature_dim)的NumPy数组
+            labels: 标签列表，每个元素是一个形状为(label_len,)的NumPy数组
+            batch_size: 批次大小
+            
+        返回:
+            评估结果（损失和准确率）
+        """
+        # 确保标签是整数类型
+        labels = [l.astype(np.int64) for l in labels]
+        
+        # 创建数据集
+        dataset = CTCDataset(features, labels)
+        
+        # 创建数据加载器
+        loader = DataLoader(
+            dataset, 
+            batch_size=batch_size, 
+            shuffle=False, 
+            collate_fn=collate_fn,
+            num_workers=0
+        )
+        
+        # 评估模型
+        metrics = self.trainer._validate(loader)
+        
+        return metrics
+    
+    def save(self, path=None):
+        """保存模型"""
+        if path is None:
+            path = f"models/ctc_{self.speaker_id}/model.pt" if self.speaker_id else "models/ctc/model.pt"
+        
+        # 确保目录存在
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        
+        self.trainer._save_model(path)
+        
+    def load(self, path):
+        """加载模型"""
+        self.trainer.load_model(path)
+        
+    def state_dict(self):
+        """返回模型的状态字典，用于保存模型"""
+        return self.model.state_dict()
+        
+    def load_state_dict(self, state_dict):
+        """加载模型的状态字典
+        
+        参数:
+            state_dict: 模型状态字典
+        """
+        self.model.load_state_dict(state_dict)
+        return self 

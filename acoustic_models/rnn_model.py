@@ -140,6 +140,11 @@ class RNNModel(nn.Module):
         返回:
             输出，形状为(batch_size, seq_len, output_dim)
         """
+        # 检查输入维度
+        if len(x.shape) == 2:
+            # 如果输入是(batch_size, input_dim)，重塑为(batch_size, 1, input_dim)
+            x = x.unsqueeze(1)
+            
         # RNN前向传播
         # x形状: (batch_size, seq_len, input_dim)
         # output形状: (batch_size, seq_len, hidden_dim * num_directions)
@@ -245,9 +250,17 @@ class RNNTrainer:
                 # 重塑输出和标签以计算损失
                 # outputs形状: (batch_size, seq_len, output_dim)
                 # 转换为: (batch_size * seq_len, output_dim)
-                batch_size, seq_len, output_dim = outputs.size()
-                outputs = outputs.reshape(-1, output_dim)
-                labels = labels.reshape(-1)
+                if len(outputs.size()) == 3:
+                    batch_size, seq_len, output_dim = outputs.size()
+                    outputs = outputs.reshape(-1, output_dim)
+                    
+                    # 如果labels是二维的，需要将它转换为一维
+                    if len(labels.size()) == 2:
+                        labels = labels.reshape(-1)
+                elif len(outputs.size()) == 2:
+                    # 已经是(batch_size, output_dim)的形状
+                    if len(labels.size()) > 1 and labels.size(1) == 1:
+                        labels = labels.squeeze(1)
                 
                 loss = self.criterion(outputs, labels)
                 
@@ -339,13 +352,21 @@ class RNNTrainer:
                 outputs = self.model(features)
                 
                 # 重塑输出和标签以计算损失
-                batch_size, seq_len, output_dim = outputs.size()
-                outputs = outputs.reshape(-1, output_dim)
-                labels = labels.reshape(-1)
+                if len(outputs.size()) == 3:
+                    batch_size, seq_len, output_dim = outputs.size()
+                    outputs = outputs.reshape(-1, output_dim)
+                    
+                    # 如果labels是二维的，需要将它转换为一维
+                    if len(labels.size()) == 2:
+                        labels = labels.reshape(-1)
+                elif len(outputs.size()) == 2:
+                    # 已经是(batch_size, output_dim)的形状
+                    if len(labels.size()) > 1 and labels.size(1) == 1:
+                        labels = labels.squeeze(1)
                 
                 loss = self.criterion(outputs, labels)
                 
-                val_loss += loss.item() * batch_size
+                val_loss += loss.item() * features.size(0)
                 
                 # 计算准确率（忽略填充标记）
                 _, predicted = torch.max(outputs, 1)

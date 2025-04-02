@@ -146,13 +146,32 @@ class CNNModel(nn.Module):
         
         参数:
             x: 输入特征，形状为(batch_size, context_window, feature_dim)
+               或(batch_size, feature_dim)
             
         返回:
             输出，形状为(batch_size, num_classes)
         """
+        # 检查输入维度
+        if len(x.shape) == 2:
+            # 如果输入是(batch_size, feature_dim)，重塑为(batch_size, context_window, feature_dim)
+            batch_size, feature_dim = x.shape
+            # 使用单帧作为所有上下文
+            x = x.unsqueeze(1).repeat(1, self.context_window, 1)
+        
+        # 确保特征维度正确
+        batch_size, ctx_window, feat_dim = x.shape
+        if feat_dim != self.feature_dim:
+            # 处理特征维度不匹配
+            if feat_dim > self.feature_dim:
+                # 如果特征维度过大，截断
+                x = x[:, :, :self.feature_dim]
+            else:
+                # 如果特征维度过小，填充
+                padding = torch.zeros(batch_size, ctx_window, self.feature_dim - feat_dim, device=x.device)
+                x = torch.cat([x, padding], dim=2)
+        
         # 将输入重塑为四维张量:(batch_size, channels, height, width)
         # 其中height=context_window, width=feature_dim
-        batch_size = x.size(0)
         x = x.unsqueeze(1)  # 添加通道维度
         
         # 通过CNN层
@@ -225,7 +244,14 @@ class CNNTrainer:
                 # 前向传播
                 self.optimizer.zero_grad()
                 outputs = self.model(features)
-                loss = self.criterion(outputs, labels.squeeze(1))
+                
+                # 计算损失 - 保护性地处理标签维度
+                if labels.dim() > 1 and labels.size(1) == 1:
+                    # 如果是 [batch_size, 1] 则压缩
+                    loss = self.criterion(outputs, labels.squeeze(1))
+                else:
+                    # 已经是 [batch_size] 或其他情况
+                    loss = self.criterion(outputs, labels)
                 
                 # 反向传播
                 loss.backward()
@@ -235,11 +261,23 @@ class CNNTrainer:
                 
                 # 计算准确率
                 _, predicted = torch.max(outputs, 1)
+                
+                # 处理标签维度
+                if labels.dim() > 1:
+                    if labels.size(1) == 1:
+                        # 如果标签是[batch_size, 1]，压缩成[batch_size]
+                        labels_for_acc = labels.squeeze(1)
+                    else:
+                        labels_for_acc = labels
+                else:
+                    # 已经是[batch_size]
+                    labels_for_acc = labels
+                
                 train_total += labels.size(0)
-                train_correct += (predicted == labels.squeeze(1)).sum().item()
+                train_correct += (predicted == labels_for_acc).sum().item()
                 
                 # 更新进度条
-                pbar.set_postfix({"loss": loss.item(), "acc": train_correct/train_total})
+                pbar.set_postfix({"loss": loss.item(), "acc": train_correct/(train_total+1e-8)})
             
             train_loss = train_loss / train_total
             train_acc = train_correct / train_total
@@ -307,13 +345,26 @@ class CNNTrainer:
                 features, labels = features.to(self.device), labels.to(self.device)
                 
                 outputs = self.model(features)
-                loss = self.criterion(outputs, labels.squeeze(1))
+                loss = self.criterion(outputs, labels)
                 
                 val_loss += loss.item() * features.size(0)
                 
+                # 计算准确率
                 _, predicted = torch.max(outputs, 1)
+                
+                # 处理标签维度
+                if labels.dim() > 1:
+                    if labels.size(1) == 1:
+                        # 如果标签是[batch_size, 1]，压缩成[batch_size]
+                        labels_for_acc = labels.squeeze(1)
+                    else:
+                        labels_for_acc = labels
+                else:
+                    # 已经是[batch_size]
+                    labels_for_acc = labels
+                
                 val_total += labels.size(0)
-                val_correct += (predicted == labels.squeeze(1)).sum().item()
+                val_correct += (predicted == labels_for_acc).sum().item()
         
         val_loss = val_loss / val_total
         val_acc = val_correct / val_total
